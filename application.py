@@ -13,7 +13,7 @@ def get_rates():
 	date = request.args.get('date')
 
 	if not date:
-		return jsonify(mesage = 'please use format http://localhost:5000/get_rates?date=2022-07-16')
+		return jsonify(message = 'please use format http://localhost:5000/get_rates?date=2022-07-16')
 	else:
 		return jsonify('rates' + date)
 

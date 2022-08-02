@@ -24,16 +24,16 @@ def home():
 
 @app.route('/get_rates', methods=['GET']) 
 def get_rates():
-	date = request.args.get('date')	
-
-	if not date:
-		return jsonify(message = 'please use format http://localhost:5000/get_rates?date=2022-07-16')
-	else:				
-		query = f'select * from fx where Date = "{date} 00:00:00"'				
+	try:
+		format_yyyymmdd = "%Y-%m-%d"
+		date = request.args.get('date')			
+		date_str = pd.to_datetime(date, format='%Y-%m-%d').strftime('%Y-%m-%d 00:00:00')
+		query = f'select * from fx where Date = "{date_str}"'				
 		df = pd.read_sql(query,db.engine)
 
 		return df.to_json(orient='values')
-
+	except:
+		return jsonify(message = 'please use format http://localhost:5000/get_rates?date=2022-07-16')
 
 if __name__ == '__main__':
 	app.run()

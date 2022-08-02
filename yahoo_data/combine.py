@@ -22,10 +22,6 @@ def combine(curs: list[str]):
     df_main['Date'] = pd.to_datetime(df_main['Date'], format='%Y-%m-%d').dt.strftime('%Y-%m-%d %H:%M:%S')
     df_main.to_csv(table_name + '.csv',index=False)
 
-    #df_test = df_main.pivot(index='Date',columns='Currency',values='Close')
-    #df_test.to_csv('fx.csv')
-
-
 def convertToDB():
     df_main = pd.read_csv(table_name + '.csv')
 

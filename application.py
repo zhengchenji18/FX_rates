@@ -5,7 +5,7 @@ serve fx rate through get_rates endpoint through GET
 """
 import io
 import os
-from flask import Flask,jsonify,request
+from flask import jsonify,request
 import pandas as pd
 import yaml
 from flask_sqlalchemy import SQLAlchemy
